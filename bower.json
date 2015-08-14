@@ -1,0 +1,28 @@
+{
+  "name": "youtube-vignette",
+  "version": "1.0.0",
+  "authors": [
+    "Pascal de Ladurantaye <pascal.de.ladurantaye@gmail.com>"
+  ],
+  "description": "A paper-card containing information about a youtube video.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "seed"
+  ],
+  "main": "youtube-vignette.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/pascal-de-ladurantaye/youtube-vignette/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}
