@@ -23,17 +23,88 @@ Example:
 
   <style>
   .img-container {
-      display: inline-block;
-      width:120px;
-      height:90px;
+    display: block;
+  }
+  .text-overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:200px;
+    background:#222;
+    transform: translateY(180px);
+    line-height:20px;
+    font-size:18px;
+    transition:transform 1s ease;
+    
+    display:flex;
+    flex-direction:column;
+  }
+  .content {
+    color:white;
+    box-sizing: border-box;
+    position:relative;
+    max-width:320px;
+    height:200px;
+    overflow:hidden;
+  }
+  paper-card:hover .text-overlay {
+    transform:translateY(0px);
+  }
+  paper-card:hover .title {
+    height:40px;
+    line-height:40px;
+    font-size:2em;
+  }
+  .title {
+    height:20px;
+    flex:1 0 auto;
+    transition: all 1s ease;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    border-bottom: 3px double #FFF;
+  }
+  .description {
+    height:120px;
+    flex:1 1 auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .description:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 20px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(34, 34, 34, 1) 50%);
+  }
+  .actions {
+    height:40px;
+    flex:1 0 auto;
   }
   </style>
 
   <template>
     <paper-card z="2">
       <div class="card-content">
-        <div class="img-container">
-          <img src=""></img>
+        <div class="content">
+          <div class="img-container">
+            <img src="https://i.ytimg.com/vi/_4O1OlGyTuU/mqdefault.jpg"></img>
+          </div>
+          <div class="text-overlay">
+            <div class="title">
+              <strong>A very very very long title</strong>
+            </div>
+            <div class="description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ultricies diam, vitae ornare felis blandit at. Nullam ac enim non diam ultricies suscipit. Mauris ut finibus mauris. Suspendisse rhoncus mollis mattis. Sed pellentesque ipsum ac euismod luctus. Cras laoreet pharetra ligula feugiat sollicitudin. Quisque pellentesque massa quis felis iaculis viverra. Praesent semper dignissim quam, quis ultricies turpis tristique in. Ut vulputate massa ut purus egestas, ac pulvinar felis malesuada. Praesent id ex id elit convallis ullamcorper. Vivamus tempus sodales cursus. Duis scelerisque odio ac convallis aliquam.
+            </div>
+            <div class="actions">
+              This is the video description.
+            </div>
+          </div>
         </div>
         
       </div>
