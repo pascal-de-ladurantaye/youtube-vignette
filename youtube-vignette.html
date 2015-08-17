@@ -22,6 +22,9 @@ Example:
 <dom-module id="youtube-vignette">
 
   <style>
+  :host {
+    font-family: Arial;
+  }
   .img-container {
     display: block;
   }
@@ -34,8 +37,8 @@ Example:
     background:#222;
     transform: translateY(180px);
     line-height:20px;
-    font-size:18px;
-    transition:transform 1s ease;
+    font-size:15px;
+    transition:transform 0.5s ease-out;
     
     display:flex;
     flex-direction:column;
@@ -57,9 +60,10 @@ Example:
     font-size:2em;
   }
   .title {
+    font-weight:bolder;
     height:20px;
     flex:1 0 auto;
-    transition: all 1s ease;
+    transition: all 0.5s ease-out;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
@@ -92,11 +96,11 @@ Example:
       <div class="card-content">
         <div class="content">
           <div class="img-container">
-            <img src="https://i.ytimg.com/vi/_4O1OlGyTuU/mqdefault.jpg"></img>
+            <img src="https://i.ytimg.com/vi/_4O1OlGyTuU/mqdefault.jpg">
           </div>
           <div class="text-overlay">
             <div class="title">
-              <strong>A very very very long title</strong>
+              A very very very long title
             </div>
             <div class="description">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ultricies diam, vitae ornare felis blandit at. Nullam ac enim non diam ultricies suscipit. Mauris ut finibus mauris. Suspendisse rhoncus mollis mattis. Sed pellentesque ipsum ac euismod luctus. Cras laoreet pharetra ligula feugiat sollicitudin. Quisque pellentesque massa quis felis iaculis viverra. Praesent semper dignissim quam, quis ultricies turpis tristique in. Ut vulputate massa ut purus egestas, ac pulvinar felis malesuada. Praesent id ex id elit convallis ullamcorper. Vivamus tempus sodales cursus. Duis scelerisque odio ac convallis aliquam.
