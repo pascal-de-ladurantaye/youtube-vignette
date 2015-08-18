@@ -11,5 +11,5 @@ http://pascal-de-ladurantaye.github.io/youtube-vignette/
 ## Installation
 
 ```sh
-bower install -save pascal-de-ladurantaye/youtube-vignette
+bower install --save pascal-de-ladurantaye/youtube-vignette
 ```
