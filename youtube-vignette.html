@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-card/paper-card.html">
 
 <!--
-An element providing a solution to no problem in particular.
+An element used to display youtube video information.
 
 Example:
 
@@ -126,10 +126,13 @@ Example:
     properties: {
 
       /**
-       * `fancy` indicates that the element should don a monocle and tophat,
-       * while checking its pocket watch.
+       * The video item to show.
+       *
+       * @type {{snippet: Object, contentDetails: Object, statistics: Object, id: String}}
        */
-      fancy: Boolean,
+      videoObject: {
+        type: Object,
+      },
 
     },
 
