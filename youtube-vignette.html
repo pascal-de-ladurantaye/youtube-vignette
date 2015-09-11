@@ -10,6 +10,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-card/paper-card.html">
 
+<!-- TODO: replace these script tags by a html import to prevent multiple loadings of the files -->
+<script src="../moment/moment.js"></script>
+<script src="../moment-duration-format/lib/moment-duration-format.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <!--
 An element used to display youtube video information.
 
@@ -51,6 +56,9 @@ Example:
     height:200px;
     overflow:hidden;
   }
+  paper-card {
+    margin-bottom:10px;
+  }
   paper-card:hover .text-overlay {
     transform:translateY(0px);
   }
@@ -86,8 +94,29 @@ Example:
     background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(34, 34, 34, 1) 50%);
   }
   .actions {
+    line-height:18px;
     height:40px;
     flex:1 0 auto;
+    width:320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .action-element {
+    text-align:center;
+    flex: 1 1 20%;
+  }
+  .action-element.big {
+    flex: 3 1 20%;
+  }
+  .material-icons.md-15 {
+    font-size: 15px;
+  }
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
   }
   </style>
 
@@ -96,17 +125,20 @@ Example:
       <div class="card-content">
         <div class="content">
           <div class="img-container">
-            <img src="https://i.ytimg.com/vi/_4O1OlGyTuU/mqdefault.jpg">
+            <img src="{{videoObject.snippet.thumbnails.medium.url}}">
           </div>
           <div class="text-overlay">
-            <div class="title">
-              A very very very long title
-            </div>
-            <div class="description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ultricies diam, vitae ornare felis blandit at. Nullam ac enim non diam ultricies suscipit. Mauris ut finibus mauris. Suspendisse rhoncus mollis mattis. Sed pellentesque ipsum ac euismod luctus. Cras laoreet pharetra ligula feugiat sollicitudin. Quisque pellentesque massa quis felis iaculis viverra. Praesent semper dignissim quam, quis ultricies turpis tristique in. Ut vulputate massa ut purus egestas, ac pulvinar felis malesuada. Praesent id ex id elit convallis ullamcorper. Vivamus tempus sodales cursus. Duis scelerisque odio ac convallis aliquam.
-            </div>
+            <div class="title">{{videoObject.snippet.title}}</div>
+            <div class="description">{{videoObject.snippet.localized.description}}</div>
             <div class="actions">
-              This is the video description.
+              <div class="action-element">{{duration(videoObject.contentDetails.duration)}}</div>
+              <div class="action-element big">
+                <i class="material-icons md-15">remove_red_eye</i>
+                <span>{{videoObject.statistics.viewCount}}</span>
+              </div>
+              <div class="action-element big">
+                <span class="green">{{videoObject.statistics.likeCount}}</span>/<span class="red">{{videoObject.statistics.dislikeCount}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -161,6 +193,10 @@ Example:
       // removed from a document.
       //
       // Use this to clean up anything you did in `attached`.
+    },
+    
+    duration: function(duration) {
+      return moment.duration(duration).format("h[h]m[m]s[s]")
     },
 
 

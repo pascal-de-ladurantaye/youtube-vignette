@@ -15,13 +15,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>youtube-vignette Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../youtube-vignette.html">
+    <link rel="import" href="../../youtube-search/youtube-search.html">
   </head>
   <body>
-
-    <youtube-vignette>
-    </youtube-vignette>
-    <youtube-vignette>
-    </youtube-vignette>
-
+    
+    <template is="dom-bind">
+      <youtube-search query="psy" google-api-key="AIzaSyDE73QRRHw7SO2H11MwuW35i17fPLzp7XE" videos="{{videos}}">
+      </youtube-search>
+      
+      <template is="dom-repeat" items="{{videos}}">
+        <youtube-vignette video-object="{{item}}">
+        </youtube-vignette>
+      </template>
+      
+      <script>
+        document.querySelector('youtube-search').search();
+      </script>
+    </template>
   </body>
 </html>
