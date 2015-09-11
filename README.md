@@ -1,7 +1,6 @@
 # youtube-vignette
 
-An element providing a starting point for your own reusable Polymer elements.
-
+A Polymer element presenting information about a Youtube Video.
 
 ## Documentation and demo
 
