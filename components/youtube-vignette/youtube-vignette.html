@@ -1,0 +1,215 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-card/paper-card.html">
+
+<!-- TODO: replace these script tags by a html import to prevent multiple loadings of the files -->
+<script src="../moment/moment.js"></script>
+<script src="../moment-duration-format/lib/moment-duration-format.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!--
+An element used to display youtube video information.
+
+Example:
+
+    <youtube-vignette></youtube-vignette>
+
+@demo
+-->
+<dom-module id="youtube-vignette">
+
+  <style>
+  :host {
+    font-family: Arial;
+  }
+  .img-container {
+    display: block;
+  }
+  .text-overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:200px;
+    background:#222;
+    transform: translateY(180px);
+    line-height:20px;
+    font-size:15px;
+    transition:transform 0.5s ease-out;
+    
+    display:flex;
+    flex-direction:column;
+  }
+  .content {
+    color:white;
+    box-sizing: border-box;
+    position:relative;
+    max-width:320px;
+    height:200px;
+    overflow:hidden;
+  }
+  paper-card {
+    margin-bottom:10px;
+  }
+  paper-card:hover .text-overlay {
+    transform:translateY(0px);
+  }
+  paper-card:hover .title {
+    height:40px;
+    line-height:40px;
+    font-size:2em;
+  }
+  .title {
+    font-weight:bolder;
+    height:20px;
+    flex:1 0 auto;
+    transition: all 0.5s ease-out;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    border-bottom: 3px double #FFF;
+  }
+  .description {
+    height:120px;
+    flex:1 1 auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .description:after {
+    content: "";
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 20px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(34, 34, 34, 1) 50%);
+  }
+  .actions {
+    line-height:18px;
+    height:40px;
+    flex:1 0 auto;
+    width:320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .action-element {
+    text-align:center;
+    flex: 1 1 20%;
+  }
+  .action-element.big {
+    flex: 3 1 20%;
+  }
+  .material-icons.md-15 {
+    font-size: 15px;
+  }
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+  }
+  </style>
+
+  <template>
+    <paper-card z="2">
+      <div class="card-content">
+        <div class="content">
+          <div class="img-container">
+            <img src="{{videoObject.snippet.thumbnails.medium.url}}">
+          </div>
+          <div class="text-overlay">
+            <div class="title">{{videoObject.snippet.title}}</div>
+            <div class="description">{{videoObject.snippet.localized.description}}</div>
+            <div class="actions">
+              <div class="action-element">{{_duration(videoObject.contentDetails.duration)}}</div>
+              <div class="action-element big">
+                <i class="material-icons md-15">remove_red_eye</i>
+                <span>{{videoObject.statistics.viewCount}}</span>
+              </div>
+              <div class="action-element big">
+                <span class="green">{{videoObject.statistics.likeCount}}</span>/<span class="red">{{videoObject.statistics.dislikeCount}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </paper-card>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'youtube-vignette',
+
+    properties: {
+
+      /**
+       * The video item to show.
+       *
+       * @type {{snippet: Object, contentDetails: Object, statistics: Object, id: String}}
+       */
+      videoObject: {
+        type: Object,
+      },
+      /**
+       * Setting the small property will make the vignette look more like a list on a mobile.
+       * It will also remove :hover functionality for use on a mobile phone
+       *
+       * @type Boolean
+       */
+      small: {
+        type: Boolean,
+        value: false,
+      },
+
+    },
+
+    // Element Lifecycle
+
+    ready: function() {
+      // `ready` is called after all elements have been configured, but
+      // propagates bottom-up. This element's children are ready, but parents
+      // are not.
+      //
+      // This is the point where you should make modifications to the DOM (when
+      // necessary), or kick off any processes the element wants to perform.
+    },
+
+    attached: function() {
+      // `attached` fires once the element and its parents have been inserted
+      // into a document.
+      //
+      // This is a good place to perform any work related to your element's
+      // visual state or active behavior (measuring sizes, beginning animations,
+      // loading resources, etc).
+    },
+
+    detached: function() {
+      // The analog to `attached`, `detached` fires when the element has been
+      // removed from a document.
+      //
+      // Use this to clean up anything you did in `attached`.
+    },
+    
+    _duration: function(duration) {
+      return moment.duration(duration).format("h[h]m[m]s[s]")
+    },
+
+
+  });
+
+</script>

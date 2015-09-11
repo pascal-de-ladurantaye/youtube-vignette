@@ -1,0 +1,30 @@
+{
+  "name": "youtube-search",
+  "version": "1.0.0",
+  "authors": [
+    "Pascal de Ladurantaye <pascal.de.ladurantaye@gmail.com>"
+  ],
+  "description": "An element used to simplify youtube video search.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "seed"
+  ],
+  "main": "youtube-search.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/pascal-de-ladurantaye/youtube-search/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "moment": "~2.10.6",
+    "moment-duration-format": "~1.3.0",
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}
